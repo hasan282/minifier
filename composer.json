@@ -1,0 +1,27 @@
+{
+    "name": "hasan282/minifier",
+    "description": "Laravel simple middleware to minify HTML response",
+    "keywords": [
+        "php",
+        "laravel",
+        "middleware"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hasan282\\Minifier\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hasan282\\Minifier\\MinifierServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0"
+    }
+}
