@@ -17,7 +17,7 @@ class Minify
 
         $successfulResponse = $response->isSuccessful();
 
-        $headerIsHtml = $response->headers->get('Content-Type') === 'text/html';
+        $headerIsHtml = $response->getContent() !== false;
 
         if ($instanceOfResponse && $successfulResponse && $headerIsHtml) {
 

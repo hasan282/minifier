@@ -1,6 +1,6 @@
 # Minifier
 
-Minifier is a simple Laravel package that automatically minifies the HTML output of your application's responses, helping to reduce page size and improve load times.
+Minifier is a simple `Laravel` package that automatically minifies the HTML output of your application's responses, helping to reduce page size and improve load times.
 
 ## Features
 
@@ -10,15 +10,25 @@ Minifier is a simple Laravel package that automatically minifies the HTML output
 
 ## Installation
 
+Update your `composer.json` file.
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/hasan282/minifier"
+    }
+],
+```
+and run command on your terminal.
 ```bash
-composer require hasan282/minifier
+composer require hasan282/minifier:v0.1.0
 ```
 
 ## Usage
 
-### In your route file
+### In your Laravel route file
 
-No changes are required to your route files. Once installed, use in your route file to minify all HTML responses.
+You can use minifier just like other middleware class in your `routes/web.php` file.
 
 ```php
 use Hasan282\Minifier\Middleware\Minify;
@@ -30,10 +40,5 @@ Route::middleware(Minifiy::class)->group(function () {
 });
 ```
 
-## How it works
-
-The package hooks into Laravel's response lifecycle and minifies the HTML output before sending it to the browser.
-
 ## License
-
 This package is open-sourced software licensed under the [MIT license](LICENSE).
