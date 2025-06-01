@@ -42,4 +42,26 @@ class Minify
 
         return $content;
     }
+
+    public static function style(string $content): string
+    {
+        $content = preg_replace_callback('/<style\b([^>]*)>(.*?)<\/style>/is', function ($matches) {
+            $styleContent = $matches[2];
+
+            $styleContent = preg_replace('/\/\*[\s\S]*?\*\//', '', $styleContent);
+            $styleContent = preg_replace('/\s+/', ' ', $styleContent);
+
+            $symbols = [';', '\{', '\}', ':', ',', '=', '>', '!', '\?', '\|'];
+
+            foreach ($symbols as $symbol) {
+                $styleContent = preg_replace('/' . $symbol . '\s+/', str_replace('\\', '', $symbol), $styleContent);
+                $styleContent = preg_replace('/\s+' . $symbol . '/', str_replace('\\', '', $symbol), $styleContent);
+            }
+            $styleContent = trim($styleContent);
+
+            return '<style' . $matches[1] . '>' . $styleContent . '</style>';
+        }, $content);
+
+        return $content;
+    }
 }

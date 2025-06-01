@@ -24,6 +24,7 @@ class Minify
             $output = $response->getContent();
 
             $output = MinifyHelper::script($output);
+            $output = MinifyHelper::style($output);
             $output = MinifyHelper::html($output);
 
             $response->setContent($output);

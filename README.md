@@ -21,7 +21,7 @@ Update your `composer.json` file.
 ```
 and run command on your terminal.
 ```bash
-composer require hasan282/minifier:v0.1.0
+composer require hasan282/minifier:v0.1.1
 ```
 
 ## Usage
