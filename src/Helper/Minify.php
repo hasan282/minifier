@@ -26,7 +26,10 @@ class Minify
         $content = preg_replace_callback('/<script\b([^>]*)>(.*?)<\/script>/is', function ($matches) {
             $scriptContent = $matches[2];
 
+            // Remove comments and extra whitespace
             $scriptContent = preg_replace('/\/\/[^\n\r]*|\/\*[\s\S]*?\*\//', '', $scriptContent);
+
+            // Replace multiple whitespace characters with a single space
             $scriptContent = preg_replace('/\s+/', ' ', $scriptContent);
 
             $symbols = [';', '\(', '\)', '{', '}', ',', '=', ':', '&', '>', '!', '\?', '\|'];
@@ -48,7 +51,10 @@ class Minify
         $content = preg_replace_callback('/<style\b([^>]*)>(.*?)<\/style>/is', function ($matches) {
             $styleContent = $matches[2];
 
+            // Remove comments and extra whitespace
             $styleContent = preg_replace('/\/\*[\s\S]*?\*\//', '', $styleContent);
+
+            // Replace multiple whitespace characters with a single space
             $styleContent = preg_replace('/\s+/', ' ', $styleContent);
 
             $symbols = [';', '\{', '\}', ':', ',', '=', '>', '!', '\?', '\|'];
@@ -60,6 +66,23 @@ class Minify
             $styleContent = trim($styleContent);
 
             return '<style' . $matches[1] . '>' . $styleContent . '</style>';
+        }, $content);
+
+        return $content;
+    }
+
+    public static function alpinexdata(string $content): string
+    {
+        $content = preg_replace_callback('/x-data="([^"]*)"/is', function ($matches) {
+            $dataContent = $matches[1];
+
+            // Remove comments and extra whitespace
+            $dataContent = preg_replace('/\/\/[^\n\r]*|\/\*[\s\S]*?\*\//', '', $dataContent);
+
+            // Replace multiple whitespace characters with a single space
+            $dataContent = preg_replace('/\s+/', ' ', $dataContent);
+
+            return 'x-data="' . trim($dataContent) . '"';
         }, $content);
 
         return $content;

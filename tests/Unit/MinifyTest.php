@@ -26,4 +26,14 @@ class MinifyTest extends TestCase
 
         $this->assertEquals($expectedOutput, $output);
     }
+
+    public function testMinifyAlpineXData()
+    {
+        $input = "<div x-data=\"{ \n // This is a comment \n \n open: false,   get isOpen() { return this.open }, \n /* This is another comment */ toggle() { this.open = ! this.open } }\"></div>";
+        $expectedOutput = "<div x-data=\"{ open: false, get isOpen() { return this.open }, toggle() { this.open = ! this.open } }\"></div>";
+
+        $output = Minify::alpinexdata($input);
+
+        $this->assertEquals($expectedOutput, $output);
+    }
 }
