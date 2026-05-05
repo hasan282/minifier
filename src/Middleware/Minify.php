@@ -23,6 +23,7 @@ class Minify
 
             $output = $response->getContent();
 
+            $output = MinifyHelper::alpinexdata($output);
             $output = MinifyHelper::script($output);
             $output = MinifyHelper::style($output);
             $output = MinifyHelper::html($output);
